@@ -8,11 +8,11 @@ public class Cat extends Animal
     public Cat(String name)
     {
         super(name);
-        numLives = 9;
+        this.numLives = 9;
     }
 
     public int getNumLives() {
-        return numLives;
+        return this.numLives;
     }
 
     public void setNumLives(int numLives) {
@@ -21,10 +21,10 @@ public class Cat extends Animal
 
     void kill()
     {
-        if (numLives > 0)
+        this.numLives --;
+        if (this.numLives > 0)
         {
             System.out.println("Ouch!");
-            numLives --;
         }
         else
         {
