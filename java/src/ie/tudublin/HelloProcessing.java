@@ -1,5 +1,6 @@
 package ie.tudublin;
 
+import ddf.minim.signals.WhiteNoise;
 import processing.core.PApplet;
 
 public class HelloProcessing extends PApplet
@@ -7,12 +8,12 @@ public class HelloProcessing extends PApplet
 
 	public void settings()
 	{
-		size(500, 500);
+		size(1260, 500);
 	}
 
 	public void setup() {
 		colorMode(HSB);
-		background(0);
+		background(250, 50, 255);
 
 		x1 = random(0, width);
 		x2 = random(0, width);
@@ -36,7 +37,7 @@ public class HelloProcessing extends PApplet
 	
 	public void draw()
 	{	
-		strokeWeight(2);
+		strokeWeight(20);
 		stroke(c, 255, 255);
 		c = (c + 1f) % 255;
 		line(x1, y1, x2, y2);
