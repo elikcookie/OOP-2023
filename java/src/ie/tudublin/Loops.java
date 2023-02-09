@@ -21,16 +21,35 @@ public class Loops extends PApplet {
     }
 
     public void draw() {
-        if (mouseX < 500) {
-            background(0);
-            fill(255);
-            rect(500, 100, 300, 750);
-        }
-        else{
-            background(0);
-            fill(255);
-            rect(200, 100, 300, 750);
-        }
+        // if (mouseX < 500) {
+        //     background(0);
+        //     fill(255);
+        //     rect(500, 100, 300, 750);
+        // }
+        // else{
+        //     background(0);
+        //     fill(255);
+        //     rect(200, 100, 300, 750);
+        // }
 
+        if (mouseX > 500 && mouseY < 500) {
+            background(0);
+            fill(255);
+            square(500, 200, 350);
+        }
+        if (mouseX > 500 && mouseY > 500){
+            background(0);
+            fill(255);
+            square(500, 500, 350);
+        }
+        if (mouseX < 500 && mouseY > 500){
+            square(200, 500, 350);
+        }
+        if(mouseX < 500 && mouseY < 500){
+            background(0);
+            fill(255);
+            square(200, 200, 350);
+        }
     }
+    
 }
