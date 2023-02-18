@@ -1,29 +1,57 @@
 package ie.tudublin;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
-// Elitsa Koleva Lab test 2016 practice
+import processing.data.Table;
+import processing.data.TableRow;
 
 public class StarMap extends PApplet
 {
+
+	ArrayList<Star> stars = new ArrayList<Star>();
+
 	public void settings()
 	{
-		size(500, 500);
+		size(1000, 1000);
 	}
 
 	public void setup() {
 		colorMode(RGB);
 		background(0);
-		stroke(255); 
-		smooth();
 		
+		smooth();
 
-
+		loadStars();
+		printStars();
+		
 	}	
+
+	void printStars(){
+		for (Star s : stars){
+			System.out.println(s);
+		}
+	}
+
+	void displayStars(){
+		for (Star s : stars){
+			s.render(this);
+		}
+	}
+
+	public void loadStars(){
+		Table table = loadTable("HabHYG15ly.csv","header");
+		for (TableRow row : table.rows()){
+			Star s = new Star(row);
+			stars.add(s);
+		}
+	}
 
 	public void draw()
 	{	
 		strokeWeight(1);
 		drawGrid();	
+		displayStars();
 	}
 
 	public void drawGrid()
