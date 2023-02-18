@@ -11,9 +11,9 @@ public class StarMap extends PApplet
 	}
 
 	public void setup() {
-		colorMode(HSB);
+		colorMode(RGB);
 		background(0);
-		
+		stroke(255); 
 		smooth();
 		
 
@@ -22,18 +22,23 @@ public class StarMap extends PApplet
 
 	public void draw()
 	{	
-		strokeWeight(2);
+		strokeWeight(1);
 		drawGrid();	
 	}
 
 	public void drawGrid()
 	{
-		float border = 50.0f;
-
-		for (int i = -4 ; i <= 5 ; i++){
-			stroke(255);
-			line(border, height/2 + i * 50, width - border, height/2 + i * 50);
-			line(width/2 + i * 50, border, width/2 + i * 50, height - border);
+		stroke(127, 255, 212);
+		float border = width * 0.1f;
+	
+		for (int i = -5 ; i <= 5 ; i++){
+			float x = map(i, -5, 5, border, width - border);
+			line(x, border, x, height - border);
+			line(border, x, width - border, x );
+			
+			textAlign(CENTER, CENTER);
+			text(i, x, border *0.5f);
+			text(i, border *0.5f, x);
 		}
 
 			
