@@ -18,6 +18,7 @@ public class Audio1 extends PApplet
     float y = 0;
     float smoothedY = 0;
     float smoothedAmplitude = 0;
+	float lerpedAvrg = 0;
 
     public void keyPressed() {
 		if (key >= '0' && key <= '9') {
@@ -43,13 +44,13 @@ public class Audio1 extends PApplet
     {
         minim = new Minim(this);
         // Uncomment this to use the microphone
-        ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-        ab = ai.mix; 
+        // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
+        // ab = ai.mix; 
 
         // And comment the next two lines out
-        // ap = minim.loadFile("heroplanet.mp3", 1024);
-        // ap.play();
-        // ab = ap.mix;
+        ap = minim.loadFile("heroplanet.mp3", 1024);
+        ap.play();
+        ab = ap.mix;
 
         colorMode(HSB);
 
@@ -67,6 +68,7 @@ public class Audio1 extends PApplet
         float average = 0;
         float sum = 0;
         off += 1;
+
         // Calculate sum and average of the samples
         // Also lerp each element of buffer;
         for(int i = 0 ; i < ab.size() ; i ++)
@@ -126,6 +128,26 @@ public class Audio1 extends PApplet
 			  line(i, 0, i, sample); 
 			  line(i, height, i, height - sample);
 			}
+			break;
+		case 4:
+			background(0);
+
+			average = sum / ab.size();
+
+			// Smoothly interpolate between the previous average and the new average
+			lerpedAvrg = lerp(lerpedAvrg, average, 0.1f);
+
+			// Draw an ellipse with a size based on the lerped average
+			noStroke();
+			fill(map(lerpedAvrg, 0, 1, 0, 255), 255, 255);
+
+			strokeWeight(2);
+			stroke(map(lerpedAvrg, 0, 1, 0, 255), 255, 255);
+			float ellipseWidth = lerpedAvrg * width * 2;
+			ellipse(width / 2, halfH, ellipseWidth, ellipseWidth);
+			strokeWeight(2);
+			stroke(map(lerpedAvrg, 0, 1, 0, 255), 255, 255);
+			noFill();
 			break;
 
         }
