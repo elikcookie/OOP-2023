@@ -43,13 +43,13 @@ public class Audio1 extends PApplet
     {
         minim = new Minim(this);
         // Uncomment this to use the microphone
-        // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-        // ab = ai.mix; 
+        ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
+        ab = ai.mix; 
 
         // And comment the next two lines out
-        ap = minim.loadFile("heroplanet.mp3", 1024);
-        ap.play();
-        ab = ap.mix;
+        // ap = minim.loadFile("heroplanet.mp3", 1024);
+        // ap.play();
+        // ab = ap.mix;
 
         colorMode(HSB);
 
@@ -89,7 +89,7 @@ public class Audio1 extends PApplet
                     float c = map(i, 0, ab.size(), 0, 255);
                     stroke(c, 255, 255);
                     float f = ab.get(i) * halfH;
-                    line(i, halfH + f, halfH - f, i);                    
+                    line(i, halfH + f, halfH - f, i);       
                 }
                 break;
         case 1:
@@ -102,6 +102,31 @@ public class Audio1 extends PApplet
 				line(i, halfH + f, i, halfH - f);                    
 			}          
             break;
+		case 2:
+			background(0);
+			for(int i = 0 ; i < ab.size() ; i ++)
+			{
+				float c = map(i, 0, ab.size(), 0, 255);
+				stroke(c, 255, 255);
+				float f = ab.get(i) * halfH;
+				line(i, halfH + f, halfH - f, i);       
+			}
+			break;
+		case 3:
+			background(0);
+			for (int i = 0; i < ab.size(); i ++)
+			{
+			  float sample = ab.get(i) * halfH;
+			  stroke(map(i, 0, ab.size(), 0, 255), 255, 255);
+		
+			  sample = ab.get(i) * width * 2;    
+			  stroke(map(i, 0, ab.size(), 0, 255), 255, 255);
+			  line(0, i, sample, i); 
+			  line(width, i, width - sample, i); 
+			  line(i, 0, i, sample); 
+			  line(i, height, i, height - sample);
+			}
+			break;
 
         }
         
