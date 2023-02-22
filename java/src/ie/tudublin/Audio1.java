@@ -138,16 +138,12 @@ public class Audio1 extends PApplet
 			lerpedAvrg = lerp(lerpedAvrg, average, 0.1f);
 
 			// Draw an ellipse with a size based on the lerped average
-			noStroke();
-			fill(map(lerpedAvrg, 0, 1, 0, 255), 255, 255);
+			noFill();
 
 			strokeWeight(2);
 			stroke(map(lerpedAvrg, 0, 1, 0, 255), 255, 255);
 			float ellipseWidth = lerpedAvrg * width * 2;
 			ellipse(width / 2, halfH, ellipseWidth, ellipseWidth);
-			strokeWeight(2);
-			stroke(map(lerpedAvrg, 0, 1, 0, 255), 255, 255);
-			noFill();
 			break;
 
         }
