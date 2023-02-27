@@ -16,18 +16,27 @@ public class Audio2 extends PApplet
     public void settings()
     {
         size(1024, 1000, P3D);
-        //fullScreen(P3D, SPAN);
     }
 
     public void setup()
     {
-
-
+        minim = new Minim(this);
+        ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
+        ab = ai.mix;
+        
     }
 
 
     public void draw()
     {
-        
+        background(0);
+        stroke(255);
+
+        float half = height/2;
+
+        for(int i = 0 ; i < ab.size() ; i ++)
+        {
+            line(i, half, i, half + ab.get(i) * half);
+        }
     }        
 }
