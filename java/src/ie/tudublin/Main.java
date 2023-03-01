@@ -39,11 +39,8 @@ public class Main
         processing.core.PApplet.runSketch( a, new Audio2());
     }
 	
-	private static void pitchSpeller() {
-		PitchSpeller ps = new PitchSpeller();
-		ps.spell(330);
-		ps.spell(420);
-		ps.spell(1980);
+	public static void pitchSpeller(){
+
 	}
 	public static void main(String[] args)
 	{
