@@ -26,17 +26,24 @@ public class Audio2 extends PApplet
         
     }
 
+    float lerpedBuffer[] = new float[1024];
 
     public void draw()
     {
         background(0);
-        stroke(255);
-
+        
+        for(int i = 0 ; i < ab.size() ; i ++)
+        {
+            lerpedBuffer[i] = lerp(lerpedBuffer[i], ab.get(i), 0.1f);
+        }
         float half = height/2;
 
         for(int i = 0 ; i < ab.size() ; i ++)
         {
+            stroke(map(i, 0, ab.size(), 0, 255), 255, 255);
+            float f = abs(lerpedBuffer[i] * half *2.0f);
             line(i, half, i, half + ab.get(i) * half);
         }
-    }        
+    }    
+    
 }
