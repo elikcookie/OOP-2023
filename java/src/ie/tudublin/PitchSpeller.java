@@ -17,10 +17,4 @@ public class PitchSpeller {
         return spellings[index];
     }
 
-    public static void main(String[] args) {
-        PitchSpeller ps = new PitchSpeller();
-        System.out.println(ps.spell(330)); // should print "E,"
-        System.out.println(ps.spell(420)); // should print "A,"
-        System.out.println(ps.spell(1980)); // should print "b"
-    }
 }
