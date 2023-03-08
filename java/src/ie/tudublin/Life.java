@@ -11,6 +11,22 @@ public class Life extends PApplet
 		size(1000, 1000);
 	}
 
+	public void keyPressed()
+	{
+		if (key == '1')
+		{
+			board.randomise();
+		}
+		if (key == '2')
+		{
+			board.clear();
+		}
+		if (key == '3')
+		{
+			board.crossSpawn();
+		}
+	}
+
 	public void setup() {
 		colorMode(RGB);
 		background(0);

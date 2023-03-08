@@ -105,11 +105,41 @@ public class LifeBoard {
         }
     }
 
+    public void clear() //clear the board
+    {
+        for(int row = 0 ; row < size ; row ++)
+        {
+            for (int col = 0 ; col < size ; col ++)
+            {
+                board[row][col] = false; //set all cells to false
+            }
+        }
+    }
+
+    public void crossSpawn() //spawn a cross
+    {
+        for(int row = 0 ; row < size ; row ++)
+        {
+            for (int col = 0 ; col < size ; col ++)
+            {
+                board[row][col] = false; //set all cells to false
+            }
+        }
+        for(int row = 0 ; row < size ; row ++)
+        {
+            board[row][size / 2] = true; //set all cells to false
+        }
+        for(int col = 0 ; col < size ; col ++)
+        {
+            board[size / 2][col] = true; //set all cells to false
+        }
+    }
+
     public void render() //render the board
     {
         for(int row = 0 ; row < size ; row ++)
         {
-            p.stroke(255);
+            p.stroke(255); //set the stroke to white
             for (int col = 0 ; col < size ; col ++)
             {
                 float x = col * cellWidth;
@@ -117,7 +147,7 @@ public class LifeBoard {
 
                 if (board[row][col])
                 {
-                    p.fill(0, 255, 0);
+                    p.fill(0, 255, 0); //set the fill to green
                 }
                 else
                 {
