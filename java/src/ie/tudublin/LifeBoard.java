@@ -3,19 +3,19 @@ package ie.tudublin;
 import processing.core.PApplet;
 
 public class LifeBoard {
-    boolean[][] board;
-    boolean[][] next;
+    boolean[][] board; //the current board
+    boolean[][] next; //the next board
     
-    private int size;
-    PApplet p;
+    private int size; //the size of the board
+    PApplet p; 
 
-    float cellWidth;
+    float cellWidth; 
 
-    public boolean getCell(int row, int col)
+    public boolean getCell(int row, int col) //get the value of a cell
     {
-        if (row >= 0 && row < size && col >= 0 && col < size)
+        if (row >= 0 && row < size && col >= 0 && col < size) //if row and col are within the board
         {
-            return board[row][col];
+            return board[row][col]; //return the value of the cell
         }
         else
         {
@@ -23,18 +23,18 @@ public class LifeBoard {
         }
     }
 
-    public int countCells(int row, int col)
+    public int countCells(int row, int col) //count the number of neighbours
     {
         int count = 0 ;
-        for(int i = -1 ; i <= 1 ; i ++)
+        for(int i = -1 ; i <= 1 ; i ++) //loop through the 3x3 grid
         {
-            for (int j = -1 ; j <= 1 ; j ++)
+            for (int j = -1 ; j <= 1 ; j ++) 
             {
-                if (! (i == 0) && (j == 0))
+                if (! (i == 0 && j == 0)) //if the cell is not the one we are checking
                 {
-                    if (getCell(i, j))
+                    if (getCell(row + i, col + j)) //if the cell is alive
                     {
-                        count ++;
+                        count ++;  //add 1 to the count
                     }
                 }
             }
@@ -42,34 +42,34 @@ public class LifeBoard {
         return count;
     }
 
-    public void applyRules()
+    public void applyRules() //apply the rules of the game
     {
-        for(int row = 0 ; row < size ; row ++)
+        for(int row = 0 ; row < size ; row ++) //loop through the board
         {
-            for (int col = 0 ; col < size ; col ++)
+            for (int col = 0 ; col < size ; col ++) 
             {
-                int count = countCells(row, col);
-                if (board[row][col])
+                int count = countCells(row, col); //count the number of neighbours
+                if (board[row][col]) //if the cell is alive
                 {
-                    if (count == 2 || count == 3)
+                    if (count == 2 || count == 3) //if the cell is alive and has 2 or 3 neighbours
                     {
-                        next[row][col] = true;
+                        next[row][col] = true; //the cell stays alive
                     }
                     else
                     {
-                        next[row][col] = false;
+                        next[row][col] = false; //the cell dies
                     }
                     
                 }
                 else
                 {
-                    if (count == 3)
+                    if (count == 3) //if the cell is dead and has 3 neighbours
                     {
-                        next[row][col] = true;
+                        next[row][col] = true; //the cell comes to life
                     }
                     else
                     {
-                        next[row][col] = false;
+                        next[row][col] = false; //the cell stays dead
                     }
                 }
 
@@ -78,12 +78,13 @@ public class LifeBoard {
                 // dead with 3 neighboiurs comes to life
             }
         }
-        boolean[][] temp = board;
-        board = next;
-        next = temp;
+        //swap the boards
+        boolean[][] temp = board; 
+        board = next; 
+        next = temp; 
     }
 
-    public LifeBoard(int size, PApplet p)
+    public LifeBoard(int size, PApplet p) //constructor
     {
         this.size = size;
         board = new boolean[size][size];
@@ -92,7 +93,7 @@ public class LifeBoard {
         cellWidth = p.width / (float) size;
     }
 
-    public void randomise()
+    public void randomise() //randomise the board
     {
         for(int row = 0 ; row < size ; row ++)
         {
@@ -104,7 +105,7 @@ public class LifeBoard {
         }
     }
 
-    public void render()
+    public void render() //render the board
     {
         for(int row = 0 ; row < size ; row ++)
         {
@@ -128,11 +129,11 @@ public class LifeBoard {
     }
 
 
-    public int getSize() {
+    public int getSize() { //getters and setters
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(int size) { //getters and setters
         this.size = size;
     } 
     
