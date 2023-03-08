@@ -6,11 +6,13 @@ public class Life extends PApplet
 {
 
 	LifeBoard board;
+
 	public void settings()
 	{
 		size(1000, 1000);
 	}
 
+	boolean paused = false;
 	public void keyPressed()
 	{
 		if (key == '1')
@@ -25,6 +27,11 @@ public class Life extends PApplet
 		{
 			board.crossSpawn();
 		}
+		if (key == ' ')
+		{
+			paused = !paused;
+		}
+		
 	}
 
 	public void setup() {
@@ -38,7 +45,9 @@ public class Life extends PApplet
 	{	
 		background(0);
 		board.render();
-		board.applyRules();
-		
+		if (!paused){
+			board.applyRules();
+		}
 	}
+
 }

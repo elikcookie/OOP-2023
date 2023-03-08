@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 public class LifeBoard {
     boolean[][] board; //the current board
-    boolean[][] next; //the next board
+    boolean[][] next; //the next row
     
     private int size; //the size of the board
     PApplet p; 
@@ -61,16 +61,24 @@ public class LifeBoard {
                     }
                     
                 }
-                else
+                else //if the cell is dead
                 {
                     if (count == 3) //if the cell is dead and has 3 neighbours
                     {
                         next[row][col] = true; //the cell comes to life
                     }
+                    //Drag the mouse across the window to set cells at the mouse position to be alive.
+                    // if()
+                    // {
+                    //     next[row][col] = true; //the cell comes to life
+                    // }
+
                     else
                     {
                         next[row][col] = false; //the cell stays dead
                     }
+
+                    
                 }
 
                 // < 2 > 3 dies
@@ -134,6 +142,10 @@ public class LifeBoard {
             board[size / 2][col] = true; //set all cells to false
         }
     }
+
+    public void pauseSim()
+    {
+            }
 
     public void render() //render the board
     {
